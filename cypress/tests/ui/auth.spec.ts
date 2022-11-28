@@ -111,13 +111,13 @@ describe("User Sign-up and Login", function () {
   it("should display login errors", function () {
     cy.visit("/");
 
-    cy.getBySel("signin-username").type("User").find("input").clear().blur();
+    cy.getBySel("signin-usernames").type("User").find("input").clear().blur();
     cy.get("#username-helper-text").should("be.visible").and("contain", "Username is required");
     cy.visualSnapshot("Display Username is Required Error");
 
     cy.getBySel("signin-password").type("abc").find("input").blur();
     cy.get("#password-helper-text")
-      .should("be.visible")
+      .should("not.be.visible")
       .and("contain", "Password must contain at least 4 characters");
     cy.visualSnapshot("Display Password Error");
 
